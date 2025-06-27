@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>商品一覧</title>
+  <!-- ファビコン設定 -->
+  <link rel="icon" href="/favicon.ico">
+  <!-- 汎用CSS読み込み -->
+  <link rel="stylesheet" href="/css/common/reset.css">
+  <link rel="stylesheet" href="/css/common/variable.css">
+  <link rel="stylesheet" href="/css/common/base.css">
+  <link rel="stylesheet" href="/css/common/header.css">
+  <link rel="stylesheet" href="/css/common/footer.css">
+  <link rel="stylesheet" href="/css/common/parts.css">
+  <!-- 固有CSS読み込み -->
+  <link rel="stylesheet" href="/css/product_list.css">
+</head>
+
+<body>
+
+  <!-- ヘッダー 開始 -->
+  <header class="header">
+    <div class="header-inner">
+
+      <!-- ヘッダーロゴ 開始 -->
+      <div class="header-logo">
+        ShopSite
+      </div>
+      <!-- ヘッダーロゴ 終了 -->
+
+    </div>
+  </header>
+  <!-- ヘッダー 終了 -->
+
+
+  <!-- メイン 開始 -->
+  <main class="container">
+    <div class="container-inner">
+
+      <!-- メインヘッダー 開始 -->
+      <div class="main-header">
+        <!-- タイトル 開始 -->
+        <div class="title-container">
+          <h1 class="common-title">商品一覧</h1>
+        </div>
+        <!-- タイトル 終了 -->
+      </div>
+      <!-- メインヘッダー 終了 -->
+
+      <!-- 商品一覧表示エリア 開始 -->
+      <div class="product-container">
+
+        <!-- 商品情報を1件ずつ繰り返し表示する 開始 -->
+        <div th:each="product : ${productList}"  class="product">
+
+          <!-- 商品のサムネイル画像(リンク) 開始 -->
+          <a th:href="@{/ecsite/detail(productId=${product.productId})}">
+            <div class="thumbnail--product">
+              <img th:src="@{${product.productImagePath}}">
+            </div>
+          </a>
+          <!-- 商品のサムネイル画像(リンク) 終了 -->
+
+          <!-- 商品のカテゴリ名 開始 -->
+          <div class="product-category">
+            <div th:text="${product.categoryName}" class="common-tag"></div>
+          </div>
+          <!-- 商品のカテゴリ名 終了 -->
+
+          <!-- 商品の名称 開始 -->
+          <div class="product-name">
+            <div th:text="${product.productName}" class="label"></div>
+          </div>
+          <!-- 商品の名称 終了 -->
+
+          <!-- 商品の価格 開始 -->
+          <div class="product-price">
+            <div th:text="${product.productPrice}" class="format-price"></div>
+          </div>
+          <!-- 商品の価格 終了 -->
+
+        </div>
+        <!-- 商品情報を1件ずつ繰り返し表示する 終了 -->
+
+      </div>
+      <!-- 商品一覧表示エリア 終了 -->
+
+    </div>
+  </main>
+  <!-- メイン 終了 -->
+
+
+  <!-- フッター 開始 -->
+  <footer class="footer">
+    <div class="footer-inner">
+
+      <!-- コピーライト 開始 -->
+      <small class="footer-copy">
+        &copy; internous All Rights Reserved.
+      </small>
+      <!-- コピーライト 終了 -->
+
+    </div>
+  </footer>
+  <!-- フッター 終了 -->
+
+  <!-- JavaScript読み込み -->
+  <script src="/js/formatPrice.js"></script>
+</body>
+
+</html>
